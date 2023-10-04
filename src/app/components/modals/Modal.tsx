@@ -80,13 +80,16 @@ export default function Modal({
             </button>
             <div className='font-semibold'>{title}</div>
           </div>
-          <div className='p-6'>{body}</div>
-          <div className='flex p-6 gap-2'>
-            <Button
-              disabled={disabled}
-              label={actionLabel}
-              onClick={handleSubmit}
-            />
+          <div className='p-6'>
+            <div>{body}</div>
+            <div className='flex gap-2 py-6'>
+              <Button
+                disabled={disabled}
+                label={actionLabel}
+                onClick={handleSubmit}
+              />
+            </div>
+            <div>{footer}</div>
           </div>
         </div>
       </div>
