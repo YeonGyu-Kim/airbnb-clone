@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 
 import prisma from '@/app/libs/prismadb';
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -50,6 +50,6 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+});
 
-export default NextAuth(authOptions);
+export { authOptions as GET, authOptions as POST };

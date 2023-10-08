@@ -1,18 +1,21 @@
 'use client';
 
 import axios from 'axios';
+import Button from '../Button';
+import Modal from './Modal';
+import Heading from '../Heading';
+import Input from '../inputs/Input';
 import { useState } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useRegisterModal } from '../hooks/useRegisterModal';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
-import Modal from './Modal';
-import Heading from '../Heading';
-import Input from '../inputs/Input';
 import { toast } from 'react-hot-toast';
-import Button from '../Button';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterModal() {
+  const router = useRouter();
   const { isOpen, onClose } = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,26 +33,42 @@ export default function RegisterModal() {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    axios
+    /*   axios
       .post('/api/register', data)
       .then(() => onClose())
       .catch((error) => {
         toast.error('Something Went Wrong');
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => setIsLoading(false)); */
+    signIn('credentials', {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      setIsLoading(false);
+
+      if (callback?.ok) {
+        toast.success('Logged in');
+        router.refresh();
+        onClose();
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
   };
 
   const bodyContent = (
     <>
       <Heading title='Welcome to Airbnb' subtitle='Create an account' />
-      <Input
+      {/*   <Input
         id='name'
         label='Name'
         disabled={isLoading}
         register={register}
         errors={errors}
         required
-      />
+      /> */}
       <Input
         id='email'
         label='Email'

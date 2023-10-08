@@ -3,7 +3,7 @@ import Logo from './Logo';
 import Search from './Search';
 import UserMenu from './UserMenu';
 
-export default function Navbar() {
+export default function Navbar({ currentUser }: any) {
   return (
     <div className='fixed w-full z-10 shadow-sm py-4 border-b-[1px]'>
       <Container>
