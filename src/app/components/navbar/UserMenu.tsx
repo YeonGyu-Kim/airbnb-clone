@@ -5,10 +5,21 @@ import Avatar from './Avatar';
 import MenuItem from './MenuItem';
 import { useToggle } from '../hooks/useToggle';
 import { useRegisterModal } from '../hooks/useRegisterModal';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
 
-export default function UserMenu() {
+type UserMenuProps = {
+  currentUser: User | null;
+};
+
+export default function UserMenu({ currentUser }: UserMenuProps) {
   const { isOpen, toggleOpen } = useToggle();
-  const { onOpen } = useRegisterModal();
+  const { onOpen, setIsLogin } = useRegisterModal();
+
+  const handleLogin = (label: string) => {
+    setIsLogin(label);
+    onOpen();
+  };
 
   return (
     <div className='relative'>
@@ -27,8 +38,22 @@ export default function UserMenu() {
 
       {isOpen && (
         <div className='absolute top-12 right-0 w-[20vw] rounded-xl shadow-sm z-20 bg-white border-[1px]'>
-          <MenuItem onClick={onOpen} label='Login' />
-          <MenuItem onClick={onOpen} label='Sign up' />
+          {currentUser ? (
+            <>
+              <MenuItem onClick={() => {}} label='My trips' />
+              <MenuItem onClick={() => {}} label='My favorites' />
+              <MenuItem onClick={() => {}} label='My reservations' />
+              <MenuItem onClick={() => {}} label='My properties' />
+              <MenuItem onClick={() => {}} label='Airbnb my home' />
+              <hr />
+              <MenuItem onClick={() => signOut()} label='Logout' />
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={() => handleLogin('login')} label='Login' />
+              <MenuItem onClick={() => handleLogin('signUp')} label='Sign up' />
+            </>
+          )}
         </div>
       )}
     </div>

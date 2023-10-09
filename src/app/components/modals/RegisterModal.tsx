@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 
 export default function RegisterModal() {
   const router = useRouter();
-  const { isOpen, onClose } = useRegisterModal();
+  const { isOpen, onClose, label } = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -61,14 +61,16 @@ export default function RegisterModal() {
   const bodyContent = (
     <>
       <Heading title='Welcome to Airbnb' subtitle='Create an account' />
-      {/*   <Input
-        id='name'
-        label='Name'
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      /> */}
+      {label === 'signUp' && (
+        <Input
+          id='name'
+          label='Name'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      )}
       <Input
         id='email'
         label='Email'
