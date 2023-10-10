@@ -5,11 +5,11 @@ import Avatar from './Avatar';
 import MenuItem from './MenuItem';
 import { useToggle } from '../hooks/useToggle';
 import { useRegisterModal } from '../hooks/useRegisterModal';
-import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/app/types';
 
 type UserMenuProps = {
-  currentUser: User | null;
+  currentUser: SafeUser | null;
 };
 
 export default function UserMenu({ currentUser }: UserMenuProps) {

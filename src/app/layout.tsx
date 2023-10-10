@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from './components/navbar/Navbar';
 import RegisterModal from './components/modals/RegisterModal';
 import getCurrentUser from './actions/getCurrentUser';
+import AuthContext from '@/context/AuthContext';
 
 const font = Nunito({ subsets: ['latin'] });
 
