@@ -14,7 +14,7 @@ type ModalProps = {
   actionLabel: string;
   disabled?: boolean;
   secondaryAction?: () => void;
-  secondaryLabel?: string;
+  secondaryActionLabel?: string;
 };
 
 export default function Modal({
@@ -27,7 +27,7 @@ export default function Modal({
   actionLabel,
   disabled,
   secondaryAction,
-  secondaryLabel,
+  secondaryActionLabel,
 }: ModalProps) {
   const [showModal, setShowModal] = useState(isOpen);
 
