@@ -33,7 +33,10 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
   return (
     <div className='relative'>
       <div className='flex items-center gap-3'>
-        <div onClick={onRent} className='hidden md:block'>
+        <div
+          onClick={onRent}
+          className='hidden md:block cursor-pointer px-3 py-1 rounded-full transition hover:bg-neutral-100'
+        >
           Airbnb your home
         </div>
         <div

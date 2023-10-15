@@ -14,6 +14,7 @@ import Heading from '../Heading';
 import { useRentModal } from '../hooks/useRentModal';
 import { categories } from '@/app/icons/categories';
 import CategoryInput from '../inputs/CategoryInput';
+import CountrySelect from '../inputs/CountrySelect';
 
 enum STEPS {
   CATEGORY = 0,
@@ -50,6 +51,15 @@ export default function RentModal() {
   });
 
   const category = watch('category');
+  const location = watch('location');
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('../Map'), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -111,15 +121,31 @@ export default function RentModal() {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Where is your place located'
+          subtitle='Help guests find you!'
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+        <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       secondaryActionLabel={secondaryActionLabel}
-      title='Airbnb yout home!'
+      title='Airbnb your home!'
       body={bodyContent}
     />
   );
