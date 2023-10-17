@@ -83,6 +83,14 @@ export default function Modal({
           <div className='p-6'>
             <div>{body}</div>
             <div className='flex gap-2 py-6'>
+              {secondaryAction && secondaryActionLabel && (
+                <Button
+                  disabled={disabled}
+                  label={secondaryActionLabel}
+                  onClick={handleSecondaryAction}
+                  outline
+                />
+              )}
               <Button
                 disabled={disabled}
                 label={actionLabel}
