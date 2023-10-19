@@ -1,9 +1,29 @@
+import Container from './components/Container';
+import EmptyState from './components/EmptyState';
 import Categories from './components/navbar/Categories';
 
-export default function Home() {
+export default async function Home() {
+  const isEmpty = true;
+
   return (
-    <div className='absolute w-full top-24'>
+    <>
       <Categories />
-    </div>
+      <Container>
+        <div
+          className='
+            pt-24
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-6
+            gap-8
+          '
+        ></div>
+        {isEmpty && <EmptyState showReset />}
+      </Container>
+    </>
   );
 }
