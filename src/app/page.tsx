@@ -1,9 +1,13 @@
+import getCurrentUser from './actions/getCurrentUser';
+import getListings from './actions/getListings';
 import Container from './components/Container';
 import EmptyState from './components/EmptyState';
+import ListingCard from './components/listings/ListingCard';
 import Categories from './components/navbar/Categories';
 
 export default async function Home() {
-  const isEmpty = true;
+  const { listings } = await getListings();
+  const currentUser = await getCurrentUser();
 
   return (
     <>
@@ -21,8 +25,17 @@ export default async function Home() {
             2xl:grid-cols-6
             gap-8
           '
-        ></div>
-        {isEmpty && <EmptyState showReset />}
+        >
+          {listings.map((listing: any) => (
+            <ListingCard
+              currentUser={currentUser}
+              key={listing.id}
+              data={listing}
+            />
+          ))}
+        </div>
+
+        {listings.length === 0 && <EmptyState showReset />}
       </Container>
     </>
   );
