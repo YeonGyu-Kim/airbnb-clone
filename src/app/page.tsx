@@ -6,7 +6,7 @@ import ListingCard from './components/listings/ListingCard';
 import Categories from './components/navbar/Categories';
 
 export default async function Home() {
-  const { listings } = await getListings();
+  const listings = await getListings();
   const currentUser = await getCurrentUser();
 
   return (
