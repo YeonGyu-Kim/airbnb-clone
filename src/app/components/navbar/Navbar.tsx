@@ -10,7 +10,7 @@ type NavbarProps = {
 
 export default function Navbar({ currentUser }: NavbarProps) {
   return (
-    <div className='fixed w-full z-10 shadow-sm py-4 border-b-[1px]'>
+    <div className='fixed w-full z-10 shadow-sm py-4 border-b-[1px] bg-white'>
       <Container>
         <div className='flex items-center justify-between'>
           <Logo />

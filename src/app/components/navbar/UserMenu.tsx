@@ -1,7 +1,7 @@
 'use client';
 
 import { IoMdMenu } from 'react-icons/io';
-import Avatar from './Avatar';
+import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import { useToggle } from '../hooks/useToggle';
 import { useRegisterModal } from '../hooks/useRegisterModal';
@@ -45,7 +45,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
         >
           <IoMdMenu size='24' />
           <div>
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>

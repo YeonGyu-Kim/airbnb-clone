@@ -15,19 +15,17 @@ export default function Categories() {
   if (!isMainPage) return null;
 
   return (
-    <div className='absolute w-full top-24'>
-      <Container>
-        <div className='flex justify-between overflow-x-auto gap-8'>
-          {categories.map((item) => (
-            <CategoryBox
-              key={item.label}
-              icon={item.icon}
-              label={item.label}
-              selected={category === item.label}
-            />
-          ))}
-        </div>
-      </Container>
-    </div>
+    <Container>
+      <div className='flex justify-between overflow-x-auto gap-8'>
+        {categories.map((item) => (
+          <CategoryBox
+            key={item.label}
+            icon={item.icon}
+            label={item.label}
+            selected={category === item.label}
+          />
+        ))}
+      </div>
+    </Container>
   );
 }
