@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useMemo, useState, useEffect } from 'react';
 import { useRegisterModal } from '../hooks/useRegisterModal';
 import { useRouter } from 'next/navigation';

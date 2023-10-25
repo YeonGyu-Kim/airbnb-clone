@@ -1,5 +1,3 @@
-'use client';
-
 import { SafeUser } from '@/app/types';
 import UseCountries from '../hooks/useCountries';
 import Heading from '../Heading';
