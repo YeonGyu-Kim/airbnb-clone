@@ -8,6 +8,7 @@ import { useRegisterModal } from '../hooks/useRegisterModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
 import { useRentModal } from '../hooks/useRentModal';
+import { useRouter } from 'next/navigation';
 
 type UserMenuProps = {
   currentUser: SafeUser | null;
@@ -15,6 +16,7 @@ type UserMenuProps = {
 
 export default function UserMenu({ currentUser }: UserMenuProps) {
   const { isOpen, toggleOpen } = useToggle();
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
 
@@ -51,10 +53,16 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
       </div>
 
       {isOpen && (
-        <div className='absolute top-12 right-0 w-[20vw] rounded-xl shadow-sm z-20 bg-white border-[1px]'>
+        <div
+          onClick={toggleOpen}
+          className='absolute top-12 right-0 w-[20vw] rounded-xl shadow-sm z-20 bg-white border-[1px]'
+        >
           {currentUser ? (
             <>
-              <MenuItem onClick={() => {}} label='My trips' />
+              <MenuItem
+                onClick={() => router.push('/trips')}
+                label='My trips'
+              />
               <MenuItem onClick={() => {}} label='My favorites' />
               <MenuItem onClick={() => {}} label='My reservations' />
               <MenuItem onClick={() => {}} label='My properties' />
