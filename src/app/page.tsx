@@ -5,12 +5,8 @@ import EmptyState from './components/EmptyState';
 import ListingCard from './components/listings/ListingCard';
 import Categories from './components/navbar/Categories';
 
-type HomeProps = {
-  searchParams: ListingsParams;
-};
-
-export default async function Home({ searchParams }: HomeProps) {
-  const listings = await getListings(searchParams);
+export default async function Home() {
+  const listings = await getListings({ userId: undefined });
   const currentUser = await getCurrentUser();
 
   return (
