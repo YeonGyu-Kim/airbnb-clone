@@ -5,7 +5,7 @@ import 'react-date-range/dist/theme/default.css';
 
 type CalendarProps = {
   value: Range;
-  disabledDates: Date[];
+  disabledDates?: Date[];
   onChange: (value: RangeKeyDict) => void;
 };
 
