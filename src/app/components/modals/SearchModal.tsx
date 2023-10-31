@@ -11,6 +11,7 @@ import qs from 'query-string';
 import { formatISO } from 'date-fns';
 import Heading from '../Heading';
 import Calendar from '../inputs/Calendar';
+import Counter from '../inputs/Counter';
 
 enum STEPS {
   LOCATION = 0,
@@ -27,7 +28,7 @@ export default function SearchModal() {
   const [step, setStep] = useState(STEPS.LOCATION);
   const [guestCount, setGuestCount] = useState(1);
   const [roomCount, setRoomCount] = useState(1);
-  const [bathrommCount, setBathrommCount] = useState(1);
+  const [bathroomCount, setBathroomCount] = useState(1);
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -66,7 +67,7 @@ export default function SearchModal() {
       locationValue: location?.value,
       guestCount,
       roomCount,
-      bathrommCount,
+      bathroomCount,
     };
 
     if (dateRange.startDate) {
@@ -92,7 +93,7 @@ export default function SearchModal() {
     step,
     guestCount,
     roomCount,
-    bathrommCount,
+    bathroomCount,
     dateRange,
     location,
     onClose,
@@ -142,6 +143,35 @@ export default function SearchModal() {
         <Calendar
           value={dateRange}
           onChange={(value) => setDateRange(value.selection)}
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='More information'
+          subtitle='Make sure everyone is free!'
+        />
+        <Counter
+          title='Guests'
+          subtitle='How many guests are coming?'
+          value={guestCount}
+          onChange={(value) => setGuestCount(value)}
+        />
+        <Counter
+          title='Rooms'
+          subtitle='How many rooms do you need?'
+          value={roomCount}
+          onChange={(value) => setRoomCount(value)}
+        />
+        <Counter
+          title='Bathrooms'
+          subtitle='How many bathrooms do you need?'
+          value={bathroomCount}
+          onChange={(value) => setBathroomCount(value)}
         />
       </div>
     );

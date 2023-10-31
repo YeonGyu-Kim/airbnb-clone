@@ -46,8 +46,8 @@ export default function ListingInfo({
         </div>
         <div className='flex items-center gap-4 font-light text-neutral-500'>
           <div>{guestCount} guests</div>
-          <div>{roomCount} guests</div>
-          <div>{bathroomCount} guests</div>
+          <div>{roomCount} room</div>
+          <div>{bathroomCount} bathroom</div>
         </div>
       </div>
       {category && (

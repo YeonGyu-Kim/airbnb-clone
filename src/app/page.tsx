@@ -5,8 +5,13 @@ import EmptyState from './components/EmptyState';
 import ListingCard from './components/listings/ListingCard';
 import Categories from './components/navbar/Categories';
 
-export default async function Home() {
-  const listings = await getListings({ userId: undefined });
+type HomeProps = {
+  searchParams: ListingsParams;
+};
+
+export default async function Home({ searchParams }: HomeProps) {
+  const hasQuery = Object.values(searchParams).length > 0;
+  const listings = await getListings(hasQuery ? searchParams : {});
   const currentUser = await getCurrentUser();
 
   return (
