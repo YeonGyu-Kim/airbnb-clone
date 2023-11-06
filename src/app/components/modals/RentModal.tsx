@@ -17,6 +17,7 @@ import CategoryInput from '../inputs/CategoryInput';
 import CountrySelect from '../inputs/CountrySelect';
 import Counter from '../inputs/Counter';
 import ImageUpload from '../inputs/ImageUpload';
+import getServerListings from '@/app/actions/getServerListings';
 
 enum STEPS {
   CATEGORY = 0,
@@ -96,6 +97,7 @@ export default function RentModal() {
 
     setIsLoading(true);
 
+    /* getServerListings(data); */ // server action 함수
     axios
       .post('/api/listings', data)
       .then(() => {
