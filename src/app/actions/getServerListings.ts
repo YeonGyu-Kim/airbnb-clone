@@ -2,7 +2,8 @@
 
 import prisma from '@/app/libs/prismadb';
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, UseFormReset } from 'react-hook-form';
+import { revalidatePath } from 'next/cache';
 
 export default async function getServerListings(body: FieldValues) {
   const currentUser = await getCurrentUser();
@@ -29,20 +30,25 @@ export default async function getServerListings(body: FieldValues) {
     }
   });
 
-  const listing = await prisma.listing.create({
-    data: {
-      title,
-      description,
-      imageSrc,
-      category,
-      roomCount,
-      bathroomCount,
-      guestCount,
-      locationValue: location.value,
-      price: parseInt(price, 10),
-      userId: currentUser.id,
-    },
-  });
-
-  return listing;
+  try {
+    const listing = await prisma.listing.create({
+      data: {
+        title,
+        description,
+        imageSrc,
+        category,
+        roomCount,
+        bathroomCount,
+        guestCount,
+        locationValue: location.value,
+        price: parseInt(price, 10),
+        userId: currentUser.id,
+      },
+    });
+    return listing;
+  } catch (e) {
+    console.log(e);
+  } finally {
+    revalidatePath('/');
+  }
 }

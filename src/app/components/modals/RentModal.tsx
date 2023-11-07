@@ -97,8 +97,11 @@ export default function RentModal() {
 
     setIsLoading(true);
 
-    /* getServerListings(data); */ // server action 함수
-    axios
+    getServerListings(data).then(() => {
+      onClose();
+      reset();
+    }); // server action 함수
+    /*  axios
       .post('/api/listings', data)
       .then(() => {
         toast.success('Listing created!');
@@ -112,7 +115,7 @@ export default function RentModal() {
       })
       .finally(() => {
         setIsLoading(false);
-      });
+      }); */
   };
 
   const actionLabel = useMemo(() => {
