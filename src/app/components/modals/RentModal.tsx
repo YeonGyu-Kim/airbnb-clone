@@ -96,7 +96,6 @@ export default function RentModal() {
     }
 
     setIsLoading(true);
-
     getServerListings(data).then(() => {
       onClose();
       reset();

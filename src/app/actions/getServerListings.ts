@@ -2,7 +2,7 @@
 
 import prisma from '@/app/libs/prismadb';
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import { FieldValues, UseFormReset } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
 import { revalidatePath } from 'next/cache';
 
 export default async function getServerListings(body: FieldValues) {
@@ -45,7 +45,7 @@ export default async function getServerListings(body: FieldValues) {
         userId: currentUser.id,
       },
     });
-    return listing;
+    //return listing;
   } catch (e) {
     console.log(e);
   } finally {

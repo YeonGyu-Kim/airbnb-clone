@@ -3,6 +3,7 @@ import getListings, { ListingsParams } from './actions/getListings';
 import Container from './components/Container';
 import EmptyState from './components/EmptyState';
 import ListingCard from './components/listings/ListingCard';
+import ListingContainer from './components/listings/ListingContainer';
 import Categories from './components/navbar/Categories';
 
 type HomeProps = {
@@ -38,6 +39,7 @@ export default async function Home({ searchParams }: HomeProps) {
               data={listing}
             />
           ))}
+          {/* <ListingContainer currentUser={currentUser} listings={listings} /> */}
         </div>
 
         {listings.length === 0 && <EmptyState showReset />}
