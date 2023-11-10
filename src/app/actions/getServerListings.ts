@@ -45,9 +45,10 @@ export default async function getServerListings(body: FieldValues) {
         userId: currentUser.id,
       },
     });
-    //return listing;
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    return {
+      error: e.message ? String(e.message) : 'Something went wrong',
+    };
   } finally {
     revalidatePath('/');
   }

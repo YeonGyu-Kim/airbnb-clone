@@ -90,16 +90,27 @@ export default function RentModal() {
     setStep((value) => value + 1);
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (step !== STEPS.PRICE) {
       return onNext();
     }
 
     setIsLoading(true);
-    getServerListings(data).then(() => {
-      onClose();
+
+    const result = await getServerListings(data); // server action 함수
+
+    if (result?.error) {
+      toast.error(result.error);
+      setIsLoading(false);
+    } else {
+      toast.success('Listing created!');
+      router.refresh();
       reset();
-    }); // server action 함수
+      setStep(STEPS.CATEGORY);
+      onClose();
+      setIsLoading(false);
+    }
+
     /*  axios
       .post('/api/listings', data)
       .then(() => {

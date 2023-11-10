@@ -72,7 +72,9 @@ export default function ListingCard({
       <div className='flex flex-col gap-2 w-full'>
         <div className='aspect-square w-full relative overflow-hidden rounded-xl'>
           <Image
+            priority
             fill
+            sizes='fill'
             alt='Listing'
             src={data.imageSrc}
             className='object-cover h-full w-full group-hover:scale-110 transition'

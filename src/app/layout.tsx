@@ -27,7 +27,11 @@ export default async function RootLayout({
     <html lang='en'>
       <body className={font.className}>
         <ProviderContext>
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              duration: 1000,
+            }}
+          />
           <RentModal />
           <SearchModal />
           <RegisterModal />

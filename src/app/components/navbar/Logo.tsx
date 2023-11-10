@@ -12,6 +12,8 @@ export default function Logo() {
       className='cursor-pointer'
       height={100}
       width={100}
+      sizes='fill'
+      priority
       src={'/images/logo.png'}
     />
   );
