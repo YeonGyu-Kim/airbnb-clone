@@ -31,7 +31,7 @@ export default async function getServerListings(body: FieldValues) {
   });
 
   try {
-    const listing = await prisma.listing.create({
+    await prisma.listing.create({
       data: {
         title,
         description,

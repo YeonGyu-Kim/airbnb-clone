@@ -8,6 +8,7 @@ import getCurrentUser from './actions/getCurrentUser';
 import AuthContext from '@/context/AuthContext';
 import RentModal from './components/modals/RentModal';
 import SearchModal from './components/modals/SearchModal';
+import ProviderContext from '@/context/ProviderContext';
 
 const font = Nunito({ subsets: ['latin'] });
 
@@ -25,12 +26,14 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={font.className}>
-        <Toaster />
-        <RentModal />
-        <SearchModal />
-        <RegisterModal />
-        <Navbar currentUser={currentUser} />
-        <div className='absolute w-full top-24'>{children}</div>
+        <ProviderContext>
+          <Toaster />
+          <RentModal />
+          <SearchModal />
+          <RegisterModal />
+          <Navbar currentUser={currentUser} />
+          <div className='absolute w-full top-24'>{children}</div>
+        </ProviderContext>
       </body>
     </html>
   );
