@@ -32,13 +32,18 @@ export default function RegisterModal() {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    /*   axios
+    /* axios
       .post('/api/register', data)
-      .then(() => onClose())
-      .catch((error) => {
-        toast.error('Something Went Wrong');
+      .then(() => {
+        toast.success('Registered!');
+        onClose();
       })
-      .finally(() => setIsLoading(false)); */
+      .catch((error) => {
+        toast.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      }); */
     signIn('credentials', {
       ...data,
       redirect: false,
